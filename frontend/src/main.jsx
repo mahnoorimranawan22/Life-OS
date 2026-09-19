@@ -12,6 +12,7 @@ import './styles/landing.css';
 import './styles/auth.css';
 import './styles/dashboard.css';
 import './styles/tasks.css';
+import './styles/planner.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

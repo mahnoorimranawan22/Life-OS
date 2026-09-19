@@ -17,6 +17,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useTasks } from '../hooks/useTasks.js';
+import { usePlanner } from '../hooks/usePlanner.js';
 import Badge from '../components/ui/Badge.jsx';
 import Button from '../components/ui/Button.jsx';
 import EmptyState from '../components/ui/EmptyState.jsx';
@@ -24,6 +25,7 @@ import Skeleton from '../components/ui/Skeleton.jsx';
 import DashboardCard from '../components/dashboard/DashboardCard.jsx';
 import { cn } from '../utils/cn.js';
 import { comparatorFor, dueLabel, isDueToday } from '../utils/tasks.js';
+import { upcomingDeadlines } from '../utils/planner.js';
 
 const quickActions = [
   { label: 'Add task', icon: Plus, to: '/tasks' },
@@ -42,6 +44,8 @@ function greetingFor(hour) {
 export default function Dashboard() {
   const { user } = useAuth();
   const { tasks, status, error, refresh } = useTasks();
+  const planner = usePlanner();
+  const { subjects, assignments, exams, status: plannerStatus, error: plannerError, refresh: plannerRefresh } = planner;
   const firstName = (user?.name || '').split(/\s+/).filter(Boolean)[0] || 'there';
   const today = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
@@ -54,6 +58,9 @@ export default function Dashboard() {
   const dueSoon = openTasks.filter((task) => task.dueDate).sort(comparatorFor('dueDate'));
   const focusTasks = openTasks.filter(isDueToday).sort(comparatorFor('dueDate'));
   const topOpen = [...openTasks].sort(comparatorFor('dueDate')).slice(0, 4);
+
+  const deadlines = upcomingDeadlines(assignments, exams, new Map(subjects.map((s) => [s.id, s])), 5);
+  const hasSubjects = subjects.length > 0;
 
   return (
     <div className="dashboard">
@@ -228,11 +235,73 @@ export default function Dashboard() {
           title="Upcoming deadlines"
           subtitle="From your university planner"
         >
-          <EmptyState
-            icon={CalendarDays}
-            title="No upcoming deadlines"
-            description="Assignments and exam dates from your planner will show up here."
-          />
+          {plannerStatus === 'loading' && (
+            <div className="dash-task-skeletons" aria-hidden="true">
+              {[0, 1].map((index) => (
+                <div className="dash-task-skeleton" key={index}>
+                  <Skeleton width={18} height={18} />
+                  <Skeleton width={`${65 - index * 15}%`} height={14} />
+                </div>
+              ))}
+            </div>
+          )}
+          {plannerStatus === 'error' && (
+            <div className="dash-card-inline">
+              <p>{plannerError}</p>
+              <Button variant="ghost" size="sm" onClick={plannerRefresh}>
+                Retry
+              </Button>
+            </div>
+          )}
+          {plannerStatus === 'ready' && !hasSubjects && (
+            <EmptyState
+              icon={CalendarDays}
+              title="No upcoming deadlines"
+              description="Add subjects and assignment or exam dates in your university planner."
+              action={
+                <Link className="dash-card-link" to="/planner">
+                  Open planner <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              }
+            />
+          )}
+          {plannerStatus === 'ready' && hasSubjects && deadlines.rows.length === 0 && (
+            <EmptyState
+              icon={CalendarDays}
+              title="Nothing due right now"
+              description="Assignment and exam dates from your planner will show up here."
+              action={
+                <Link className="dash-card-link" to="/planner">
+                  Open planner <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              }
+            />
+          )}
+          {plannerStatus === 'ready' && deadlines.rows.length > 0 && (
+            <>
+              <ul className="dash-task-list">
+                {deadlines.rows.map((row) => (
+                  <li key={`${row.kind}-${row.id}`} className="dash-task-row">
+                    <Badge variant={row.kind === 'exam' ? 'accent' : 'neutral'}>
+                      {row.kind === 'exam' ? 'Exam' : 'Work'}
+                    </Badge>
+                    <span className="dash-task-info">
+                      <span className="dash-task-title">{row.title}</span>
+                      <span className="dash-task-due">
+                        {row.subjectName ? `${row.subjectName} · ` : ''}
+                        {row.dueText}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="dash-card-link-wrap">
+                <Link className="dash-card-link" to="/planner">
+                  Open planner <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </div>
+            </>
+          )}
         </DashboardCard>
 
         <DashboardCard

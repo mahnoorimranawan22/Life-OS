@@ -81,6 +81,16 @@
   color: var(--primary);
 }
 
+.btn--success {
+  background: var(--success);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--success:hover:not(:disabled) {
+  background: #33744b;
+}
+
 .btn--ghost {
   background: transparent;
   color: var(--text);

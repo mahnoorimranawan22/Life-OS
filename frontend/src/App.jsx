@@ -3,6 +3,7 @@ import RootLayout from './layouts/RootLayout.jsx';
 import Landing from './pages/landing/Landing.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Tasks from './pages/Tasks.jsx';
+import Planner from './pages/Planner.jsx';
 import UIKit from './pages/UIKit.jsx';
 import Login from './pages/auth/Login.jsx';
 import Register from './pages/auth/Register.jsx';
@@ -19,6 +20,7 @@ export default function App() {
         <Route element={<RootLayout />}>
           <Route path="home" element={<Dashboard />} />
           <Route path="tasks" element={<Tasks />} />
+          <Route path="planner" element={<Planner />} />
           <Route path="ui" element={<UIKit />} />
         </Route>
       </Route>

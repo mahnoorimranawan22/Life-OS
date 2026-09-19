@@ -8,6 +8,7 @@ const variants = {
   outline: 'btn--outline',
   ghost: 'btn--ghost',
   danger: 'btn--danger',
+  success: 'btn--success',
 };
 
 const sizes = {

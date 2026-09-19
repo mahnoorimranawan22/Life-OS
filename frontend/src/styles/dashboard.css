@@ -299,6 +299,18 @@
   color: var(--danger);
 }
 
+.dash-card-link-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.dash-deadline-badge {
+  flex: 0 0 auto;
+}
+
 /* Tablet — 2 columns */
 @media (max-width: 960px) {
   .dash-grid {
