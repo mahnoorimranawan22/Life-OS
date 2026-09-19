@@ -1,0 +1,61 @@
+/* ============================================================
+   LifeOS design tokens
+   ============================================================ */
+
+:root {
+  /* ---- Palette ---- */
+  --bg: #faf8f2;              /* warm paper background   */
+  --surface: #ffffff;         /* cards, panels           */
+  --surface-soft: #f2f0e9;    /* sunken / inset areas    */
+
+  --primary: #174a3a;         /* deep forest green       */
+  --primary-strong: #103529;  /* hover / pressed         */
+  --primary-soft: #e5eee5;    /* soft green wash         */
+
+  --accent: #e88a4a;          /* warm apricot            */
+  --accent-strong: #d9732a;   /* hover / text            */
+  --accent-soft: #fbeede;
+
+  --text: #202522;
+  --muted: #737b73;
+  --border: #e4e6df;
+
+  --success: #3e8e5a;
+  --success-soft: #e5f2e8;
+  --warning: #c08a2d;
+  --warning-soft: #f7eedd;
+  --danger: #c13b2d;
+  --danger-soft: #f9e6e2;
+
+  /* ---- Typography ---- */
+  --font-heading: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Radii ---- */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-full: 999px;
+
+  /* ---- Shadows (soft, warm, calm) ---- */
+  --shadow-sm: 0 1px 2px rgba(32, 37, 34, 0.05), 0 1px 3px rgba(32, 37, 34, 0.04);
+  --shadow-md: 0 6px 16px -6px rgba(32, 37, 34, 0.1), 0 2px 6px rgba(32, 37, 34, 0.05);
+  --shadow-lg: 0 20px 48px -16px rgba(32, 37, 34, 0.22);
+  --focus-ring: 0 0 0 3px rgba(232, 138, 74, 0.35);
+
+  /* ---- Spacing scale ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  /* ---- Layout ---- */
+  --sidebar-w: 264px;
+  --topbar-h: 68px;
+  --bottomnav-h: 62px;
+}

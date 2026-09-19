@@ -1,0 +1,284 @@
+/* ---- Tasks page ---- */
+.tasks-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.tasks-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.tasks-head h1 {
+  margin: 0 0 4px;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.tasks-head-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.tasks-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tasks-summary span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 13px;
+  color: var(--muted);
+  box-shadow: var(--shadow-sm);
+}
+
+.tasks-summary b {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.tasks-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: 12px;
+}
+
+.tasks-toolbar .field {
+  margin: 0;
+  min-width: 0;
+}
+
+.tasks-toolbar .tasks-search .field-control {
+  min-width: 180px;
+}
+
+.tasks-filter {
+  min-width: 150px;
+}
+
+.tasks-filter option {
+  color: var(--text);
+}
+
+/* ---- Task list ---- */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.task-row:hover {
+  border-color: #d5d8ce;
+  box-shadow: var(--shadow);
+}
+
+.task-row--done {
+  background: var(--surface);
+}
+
+.task-check {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #c9cec3;
+  background: var(--card);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.task-check:hover {
+  border-color: var(--accent);
+  transform: scale(1.06);
+}
+
+.task-check--done {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.task-check--done:hover {
+  border-color: var(--accent);
+  transform: scale(1.06);
+}
+
+.task-main {
+  min-width: 0;
+}
+
+.task-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.task-row--done .task-title {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+
+.task-desc {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.task-row--done .task-desc {
+  color: #a6ada3;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.task-due {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.task-due--today {
+  color: var(--accent);
+}
+
+.task-due--overdue {
+  color: var(--danger);
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-actions .icon-btn {
+  width: 36px;
+  height: 36px;
+}
+
+.tasks-count {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---- Skeletons ---- */
+.task-list-skeletons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-skeleton {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+}
+
+.task-skeleton-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.tasks-empty {
+  padding: 12px 0;
+}
+
+/* ---- Form inside modal ---- */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- Confirm copy ---- */
+.confirm-copy {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .tasks-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .tasks-toolbar .tasks-search {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 551px) {
+  .tasks-head {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .tasks-head .btn {
+    width: 100%;
+  }
+
+  .tasks-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tasks-toolbar .tasks-search {
+    grid-column: auto;
+  }
+
+  .tasks-filter {
+    min-width: 0;
+  }
+
+  .task-row {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 12px 14px;
+  }
+
+  .task-actions {
+    grid-column: 2;
+    justify-content: flex-end;
+  }
+}

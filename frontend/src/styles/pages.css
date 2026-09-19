@@ -1,0 +1,208 @@
+/* ============================================================
+   LifeOS pages — Home & UI Kit
+   ============================================================ */
+
+/* ---- Home ---- */
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-6) 0 var(--sp-5);
+  max-width: 720px;
+}
+
+.home-hero h1 {
+  font-size: clamp(34px, 5vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.home-hero-copy {
+  max-width: 560px;
+  font-size: 16.5px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-1);
+}
+
+.hero-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: var(--sp-4);
+}
+
+.home-splash {
+  margin-top: var(--sp-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--sp-6);
+  display: grid;
+  gap: var(--sp-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.splash-copy {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.splash-copy strong {
+  color: var(--primary);
+}
+
+/* Module preview grid */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+.module-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+
+.module-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+}
+
+.module-card h4 {
+  margin: 0;
+  font-size: 15.5px;
+}
+
+.module-card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.module-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ---- UI Kit gallery ---- */
+.uikit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+  padding-bottom: var(--sp-7);
+}
+
+.uikit-hero {
+  padding: var(--sp-4) 0 0;
+}
+
+.uikit-hero h1 {
+  margin-bottom: var(--sp-2);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.section-head p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.demo-pad {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.demo-label {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.demo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.demo-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sp-4);
+}
+
+.demo-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .module-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-pad {
+    padding: var(--sp-4);
+  }
+}
